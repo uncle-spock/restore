@@ -13,7 +13,13 @@ class ErrorBoundary extends Component {
 	render() {
 		return (
 			<>
-				{!this.state.isError ? <div>{this.props.children}</div> : <ErrorIndicator />}
+				{!this.state.isError ? (
+					<>
+						{this.props.children}
+					</>
+				) : (
+						<ErrorIndicator />
+					)}
 			</>
 		);
 	}

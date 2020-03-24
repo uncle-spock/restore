@@ -1,17 +1,26 @@
 import React from 'react';
-import { ApiServiceProvider } from '../BookStoreServiceContext/BookStoreServiceContext';
-import BookStoreService from '../../services/book-store-service';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import { Route, Switch } from 'react-router-dom';
 
-const api = new BookStoreService();
+import {
+  HomePage,
+  CartPage,
+} from '../pages';
 
-function App() {
+const App = () => {
   return (
-    <ApiServiceProvider value={api}>
-      <ErrorBoundary>
-        <div>hello</div>
-      </ErrorBoundary>
-    </ApiServiceProvider>
+    <Switch>
+      <Route
+        path="/"
+        component={HomePage}
+        exact
+      />
+
+      <Route
+        path="/cart"
+        component={CartPage}
+        exact
+      />
+    </Switch>
   );
 }
 

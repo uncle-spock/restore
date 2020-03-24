@@ -5,7 +5,7 @@ const withApiService = (Wrapped) => {
 	return (props) => {
 		return (
 			<ApiServiceConsumer>
-				{api => <Wrapped {...props} api={api} />}
+				{apiService => <Wrapped {...props} apiService={apiService} />}
 			</ApiServiceConsumer>
 		);
 	};
