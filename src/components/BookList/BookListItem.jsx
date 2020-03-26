@@ -1,15 +1,15 @@
 import React from 'react';
 
-import bookImg from '../../assets/img/book.png';
-
 const BookListItem = ({ book }) => {
-	const { title, author } = book;
+	const { title, author, price, imgUrl } = book;
 
 	return (
 		<div className="card mb-3">
 			<div className="row no-gutters">
 				<div className="col-md-4">
-					<img src={bookImg} className="card-img" alt="book" />
+					<div className="img-box">
+						<img src={imgUrl} className="card-img" alt="book" />
+					</div>
 				</div>
 
 				<div className="col-md-8">
@@ -18,7 +18,7 @@ const BookListItem = ({ book }) => {
 
 						<p className="card-text"><small className="text-muted">{author}</small></p>
 
-						<p className="card-text">$34</p>
+						<p className="card-text">${price}</p>
 
 						<button className="btn btn-info">Add to Cart</button>
 					</div>

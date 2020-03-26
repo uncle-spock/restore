@@ -1,7 +1,14 @@
 .card {
-	padding: 20px;
+  padding: 20px;
 }
 
-.card-img {
-	width: 200px;
+.img-box {
+  width: 170px;
+  border: 1px solid #eee;
+  box-shadow: 6px 8px 23px -13px rgba(0, 0, 0, 0.7);
+
+  img {
+    display: block;
+    width: 100%;
+  }
 }
