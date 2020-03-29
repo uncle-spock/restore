@@ -1,30 +1,19 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { routeNames } from "../../constants";
 
-import {
-  PageLayout,
-  HomePage,
-  CartPage,
-} from '../pages';
+import { PageLayout, HomePage, CartPage } from "../pages";
 
 const App = () => {
   return (
     <PageLayout>
       <Switch>
-        <Route
-          path="/"
-          component={HomePage}
-          exact
-        />
+        <Route path={routeNames.HOME} component={HomePage} exact />
 
-        <Route
-          path="/cart"
-          component={CartPage}
-          exact
-        />
+        <Route path={routeNames.CART} component={CartPage} exact />
       </Switch>
     </PageLayout>
   );
-}
+};
 
 export default App;

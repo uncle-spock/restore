@@ -1,7 +1,7 @@
-import BookList from './BookList';
+import BookListContainer from './BookListContainer';
 import BookListItem from './BookListItem';
 
 export {
-	BookList,
+	BookListContainer,
 	BookListItem,
 };

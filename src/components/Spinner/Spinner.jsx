@@ -1,8 +1,15 @@
-import React from 'react';
-import { ReactComponent as SpinnerSVG } from '../../assets/img/oval.svg';
+import React from "react";
+
+import "./spinner.scss";
+
+import { ReactComponent as SpinnerSVG } from "../../assets/img/oval.svg";
 
 const Spinner = () => {
-	return <SpinnerSVG />;
+  return (
+    <div className="spinner-box">
+      <SpinnerSVG />
+    </div>
+  );
 };
 
 export default Spinner;

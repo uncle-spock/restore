@@ -1,8 +1,63 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./order-list.scss";
+import {
+  cartItemIncrease,
+  cartItemDecrease,
+  cartItemDelete
+} from "../../actions";
 
-const OrderList = () => {
+const OrderList = ({
+  items,
+  totalOrderPrice,
+  onIncrease,
+  onDecrease,
+  onDelete
+}) => {
+  const renderRow = (item, index) => {
+    const { id, title, totalCount, totalPrice } = item;
+
+    return (
+      <li key={id} className="list-group-item">
+        <span className="order-list-count">{index + 1}</span>
+
+        <span>{title}</span>
+
+        <span>{totalCount}</span>
+
+        <span>${totalPrice}</span>
+
+        <div className="order-list-actions">
+          <button
+            type="button"
+            className="btn btn-outline-success btn-sm"
+            onClick={() => onIncrease(id)}
+          >
+            <i className="fa fa-plus"></i>
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-outline-warning btn-sm"
+            disabled={totalCount < 2}
+            onClick={() => onDecrease(id)}
+          >
+            <i className="fa fa-minus"></i>
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-outline-danger btn-sm"
+            onClick={() => onDelete(id)}
+          >
+            <i className="fa fa-trash"></i>
+          </button>
+        </div>
+      </li>
+    );
+  };
+
   return (
     <>
       <h2>Your Order's List</h2>
@@ -16,34 +71,23 @@ const OrderList = () => {
       </div>
 
       <ul className="order-list list-group list-group-flush">
-        <li className="list-group-item">
-          <span className="order-list-count">1</span>
-
-          <span>item</span>
-
-          <span>Count</span>
-
-          <span>$40</span>
-
-          <div className="order-list-actions">
-            <button type="button" className="btn btn-outline-success btn-sm">
-              <i className="fa fa-plus"></i>
-            </button>
-
-            <button type="button" className="btn btn-outline-warning btn-sm">
-              <i className="fa fa-minus"></i>
-            </button>
-
-            <button type="button" className="btn btn-outline-danger btn-sm">
-              <i className="fa fa-trash"></i>
-            </button>
-          </div>
-        </li>
+        {items.map((item, index) => renderRow(item, index))}
       </ul>
 
-      <span className="total-price">Total: $200</span>
+      <span className="total-price">Total: ${totalOrderPrice}</span>
     </>
   );
 };
 
-export default OrderList;
+const mapStateToProps = state => ({
+  items: state.cart.cartItems,
+  totalOrderPrice: state.cart.totalOrderPrice
+});
+
+const mapDispatchToProps = {
+  onIncrease: cartItemIncrease,
+  onDecrease: cartItemDecrease,
+  onDelete: cartItemDelete
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderList);

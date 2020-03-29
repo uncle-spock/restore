@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { routeNames } from "../../constants";
 
 import "./header.scss";
 
-const Header = ({ children }) => {
+const Header = () => {
   return (
     <nav className="navbar navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to={routeNames.HOME}>
         ReStore
       </Link>
 
-      <div className="header-content">
+      <Link className="header-content" to={routeNames.CART}>
         <i className="cart-icon fa fa-shopping-cart"></i>
 
         <span className="cart-info">5 items ($200)</span>
-      </div>
+      </Link>
     </nav>
   );
 };

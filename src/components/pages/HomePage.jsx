@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { BookList } from '../BookList';
-import OrderList from '../OrderList/OrderList';
+import { BookListContainer } from "../BookList";
+import OrderList from "../OrderList/OrderList";
 
 const HomePage = () => {
-	return (
-		<>
-			<BookList />
-			<OrderList />
-		</>
-	);
-}
+  return (
+    <>
+      <BookListContainer />
+      <OrderList />
+    </>
+  );
+};
 
 export default HomePage;

@@ -14,16 +14,9 @@
 }
 
 .order-list {
-  counter-reset: counter;
-
   li {
     @extend %order-list-row-layout;
   }
-}
-
-.order-list-count {
-  align-self: center;
-  justify-self: center;
 }
 
 .order-list-actions {
