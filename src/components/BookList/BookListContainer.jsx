@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import "./book-list.scss";
 import BookListItem from "./BookListItem";
-import { fetchBooks, addBookToCart } from "../../actions";
+import { addBookToCart } from "../../actions";
+import { fetchBooks } from "../../thunks";
 import withApiService from "../hocs/withApiService";
 import { compose } from "../../utils";
 import Spinner from "../Spinner/Spinner";
@@ -28,7 +29,8 @@ const BookList = ({ books, onAddBookToCart }) => {
 
 class BookListContainer extends Component {
   componentDidMount() {
-    this.props.onFetchBooks();
+    const { apiService, onFetchBooks } = this.props;
+    onFetchBooks(apiService);
   }
 
   render() {
@@ -54,11 +56,9 @@ const mapStateToProps = state => ({
   isLoadBooksError: state.books.loadBooksError
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onFetchBooks: fetchBooks(dispatch, ownProps.apiService),
-    onAddBookToCart: id => dispatch(addBookToCart(id))
-  };
+const mapDispatchToProps = {
+  onFetchBooks: fetchBooks,
+  onAddBookToCart: addBookToCart
 };
 
 export default compose(

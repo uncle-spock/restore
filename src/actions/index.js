@@ -1,5 +1,4 @@
 import { actionsNames } from '../constants';
-import { handleError } from "../helpers";
 import store from '../store/store';
 
 const booksLoadStart = () => {
@@ -21,58 +20,6 @@ const booksLoadFailed = (error) => {
 		payload: error,
 	};
 };
-
-const fetchBooks = (dispatch, apiService) => async () => {
-	try {
-		dispatch(booksLoadStart());
-
-		const books = await apiService.getBooks();
-
-		dispatch(booksLoadSuccess(books));
-	} catch (error) {
-		dispatch(booksLoadFailed(error));
-		handleError(error);
-	}
-};
-
-// const updateCartItem = (book, cartItem = {}) => {
-// 	const {
-// 		id = book.id,
-// 		title = book.title,
-// 		totalCount = 0,
-// 		totalPrice = 0
-// 	} = cartItem;
-
-// 	return {
-// 		id,
-// 		title,
-// 		totalCount: totalCount + 1,
-// 		totalPrice: totalPrice + book.price,
-// 	};
-// };
-
-// const updateCartItems = (bookId) => {
-// 	const { books: {books}, cart: {cartItems} } = store.getState();
-
-// 	const book = books.find((book) => book.id === bookId);
-// 	const cartItemIndex = cartItems.findIndex((item) => item.id === bookId);
-// 	const cartItem = cartItems[cartItemIndex];
-
-// 	let newItem = updateCartItem(book, cartItem);
-
-// 	if (cartItemIndex === -1) {
-// 		return [
-// 			...cartItems,
-// 			newItem
-// 		];
-// 	} else {
-// 		return [
-// 			...cartItems.slice(0, cartItemIndex),
-// 			newItem,
-// 			...cartItems.slice(cartItemIndex + 1)
-// 		];
-// 	}
-// };
 
 const updateCartItems = (bookId, quantity) => {
 	const { books: { allBooks }, cart: { cartItems } } = store.getState();
@@ -130,9 +77,11 @@ const cartItemDelete = (id) => {
 };
 
 export {
-	fetchBooks,
 	cartItemIncrease,
 	cartItemDecrease,
 	cartItemDelete,
 	addBookToCart,
+	booksLoadStart,
+	booksLoadSuccess,
+	booksLoadFailed,
 };
